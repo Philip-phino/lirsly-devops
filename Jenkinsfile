@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:18'
+            args '-u root'
+        }
+    }
 
     stages {
 
@@ -24,12 +29,6 @@ pipeline {
                 dir('frontend') {
                     sh 'npm run build'
                 }
-            }
-        }
-
-        stage('Build Docker Images') {
-            steps {
-                sh 'docker compose build'
             }
         }
 
