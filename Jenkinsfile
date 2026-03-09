@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18'
-            args '-u root'
-        }
-    }
+    agent any
 
     stages {
 
@@ -21,6 +16,20 @@ pipeline {
                 dir('frontend') {
                     sh 'npm install'
                 }
+            }
+        }
+
+        stage('Build Frontend') {
+            steps {
+                dir('frontend') {
+                    sh 'npm run build'
+                }
+            }
+        }
+
+        stage('Pipeline Completed') {
+            steps {
+                echo 'Lirsly pipeline executed successfully!'
             }
         }
 
