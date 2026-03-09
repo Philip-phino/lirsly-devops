@@ -27,9 +27,9 @@ pipeline {
             }
         }
 
-        stage('Pipeline Completed') {
+        stage('Build Docker Images') {
             steps {
-                echo 'Lirsly pipeline executed successfully!'
+                sh 'docker compose build'
             }
         }
 
