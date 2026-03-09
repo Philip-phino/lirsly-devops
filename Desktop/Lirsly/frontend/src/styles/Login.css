@@ -1,0 +1,113 @@
+.login-container {
+  min-height: 100vh;
+  background-color: #f5e8cf;
+  display: flex;
+  
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* LOGIN BOX */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 420px;
+  gap: 20px;
+  
+  background: #fffaf0;
+  padding: 45px;
+  border-radius: 17px;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* TITLE */
+
+.login-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* INPUT */
+
+.input-field {
+  padding: 10px;
+  border: 2px solid #e6dcc9;
+  border-radius: 6px;
+  background: #faf7f0;
+  width: 100%;
+}
+
+.input-field:focus {
+  border-color: #c8b89d;
+  outline: none;
+}
+
+/* BUTTON */
+
+.btn {
+  background-color: #1a1a1a;
+  color: #f5f0e6;
+  padding: 10px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #c8b89d;
+  color: #1a1a1a;
+}
+
+/* REGISTER LINK */
+
+.register-link {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.register-link a {
+  color: black;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  color: #c8b89d;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media (max-width:768px){
+
+  .login-container,
+  .register-container{
+    padding:20px;
+    height:auto;
+  }
+
+  .login-card,
+  .register-card{
+    width:100%;
+    padding:25px;
+  }
+
+  .input-field{
+    width:100%;
+    font-size:16px;
+  }
+
+  .btn{
+    width:100%;
+    padding:12px;
+  }
+
+}
