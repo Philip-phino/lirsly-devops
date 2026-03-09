@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/Philip-phino/lirsly-devops.git'
-            }
-        }
-
         stage('Install Backend Dependencies') {
             steps {
                 dir('backend') {
@@ -22,18 +16,6 @@ pipeline {
                 dir('frontend') {
                     sh 'npm install'
                 }
-            }
-        }
-
-        stage('Build Docker Containers') {
-            steps {
-                sh 'docker compose build'
-            }
-        }
-
-        stage('Run Containers') {
-            steps {
-                sh 'docker compose up -d'
             }
         }
 
