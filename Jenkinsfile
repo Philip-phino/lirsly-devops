@@ -9,22 +9,15 @@ pipeline {
             }
         }
 
-        stage('Build Backend Image') {
+        stage('Build Docker Images') {
             steps {
-                sh 'docker build -t lirsly-backend ./backend'
-            }
-        }
-
-        stage('Build Frontend Image') {
-            steps {
-                sh 'docker build -t lirsly-frontend ./frontend'
+                sh 'docker compose build'
             }
         }
 
         stage('Run Containers') {
             steps {
-                sh 'docker run -d -p 5000:5000 --name backend lirsly-backend'
-                sh 'docker run -d -p 3000:3000 --name frontend lirsly-frontend'
+                sh 'docker compose up -d'
             }
         }
 
