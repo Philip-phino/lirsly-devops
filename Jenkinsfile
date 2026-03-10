@@ -3,40 +3,22 @@ pipeline {
 
     stages {
 
-        stage('Check Workspace') {
+        stage('Check Files') {
             steps {
                 sh 'pwd'
                 sh 'ls -la'
             }
         }
 
-        stage('Check Docker') {
+        stage('Build Containers') {
             steps {
-                sh 'docker --version'
+                sh 'docker compose -f docker-compose.yml build'
             }
         }
 
-        stage('Build Docker Images') {
+        stage('Start Containers') {
             steps {
-                sh '''
-                docker run --rm \
-                -v /var/run/docker.sock:/var/run/docker.sock \
-                -v $PWD:/app \
-                -w /app \
-                docker/compose:latest build
-                '''
-            }
-        }
-
-        stage('Run Containers') {
-            steps {
-                sh '''
-                docker run --rm \
-                -v /var/run/docker.sock:/var/run/docker.sock \
-                -v $PWD:/app \
-                -w /app \
-                docker/compose:latest up -d
-                '''
+                sh 'docker compose -f docker-compose.yml up -d'
             }
         }
 
