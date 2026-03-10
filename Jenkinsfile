@@ -11,13 +11,13 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                sh 'docker-compose build'
+                sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:$PWD -w $PWD docker/compose:latest build'
             }
         }
 
         stage('Run Containers') {
             steps {
-                sh 'docker-compose up -d'
+                sh 'docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:$PWD -w $PWD docker/compose:latest up -d'
             }
         }
 
