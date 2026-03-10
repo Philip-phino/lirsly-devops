@@ -2,19 +2,31 @@ version: "3"
 
 services:
 
-  mongodb:
+  mongo:
     image: mongo
+    container_name: lirsly-mongo
     ports:
       - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
 
   backend:
     build: ./backend
+    container_name: lirsly-backend
     ports:
       - "5000:5000"
     depends_on:
-      - mongodb
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/lirslydb
 
   frontend:
     build: ./frontend
+    container_name: lirsly-frontend
     ports:
       - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:

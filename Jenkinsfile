@@ -1,34 +1,30 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18'
-            args '-u root'
-        }
-    }
+    agent any
 
     stages {
 
-        stage('Install Backend Dependencies') {
+        stage('Clone Repository') {
             steps {
-                dir('backend') {
-                    sh 'npm install'
-                }
+                git 'https://github.com/Philip-phino/lirsly-devops.git'
             }
         }
 
-        stage('Install Frontend Dependencies') {
+        stage('Build Backend Image') {
             steps {
-                dir('frontend') {
-                    sh 'npm install'
-                }
+                sh 'docker build -t lirsly-backend ./backend'
             }
         }
 
-        stage('Build Frontend') {
+        stage('Build Frontend Image') {
             steps {
-                dir('frontend') {
-                    sh 'npm run build'
-                }
+                sh 'docker build -t lirsly-frontend ./frontend'
+            }
+        }
+
+        stage('Run Containers') {
+            steps {
+                sh 'docker run -d -p 5000:5000 --name backend lirsly-backend'
+                sh 'docker run -d -p 3000:3000 --name frontend lirsly-frontend'
             }
         }
 
