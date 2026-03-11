@@ -10,7 +10,7 @@ services:
     build: ./backend
     container_name: backend
     env_file:
-      - .env.example
+      - .env
     ports:
       - "5000:5000"
     depends_on:
