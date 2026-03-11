@@ -10,6 +10,12 @@ pipeline {
             }
         }
 
+        stage('Create ENV File') {
+            steps {
+                sh 'cp .env.example .env'
+            }
+        }
+
         stage('Build Containers') {
             steps {
                 sh 'docker-compose build'
